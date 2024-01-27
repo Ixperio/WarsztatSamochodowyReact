@@ -1,6 +1,8 @@
+import NavBar from "../NavBar/NavBar"
+
 const Header = () => {
   return (
-    <div>Tutaj będzie epicki heder</div>
+    <NavBar/>
   )
 }
 
