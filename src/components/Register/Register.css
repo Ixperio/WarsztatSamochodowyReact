@@ -1,0 +1,120 @@
+.register{
+    display: grid;
+    place-items: center;
+}
+.register > form{
+
+    display: grid;
+    grid-template-areas: "a a"
+                         "e e"
+                         "b c"
+                         "f f"
+                         "d d";
+    place-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 20px;
+    grid-row-gap: 30px;
+    box-shadow: rgba(0,0,0,0.25) 0px 1px 3px 1px;
+    border-radius: 10px;
+    padding: 50px;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    background-color: #fdfdfd;
+    color: #000;
+    font-family: Inter;
+    font-weight: 300;
+    width: max-content;
+}
+.register > form > .line{
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+    content: "";
+    height: 1px;
+    background-color: #cfcfcf;
+}
+.register > form > .line1{
+    grid-area: e;
+}
+.register > form > .line2{
+    grid-area: f;
+}
+.register > form > h2{
+    grid-area: a;
+    width: 100%;
+    align-items: center;
+    padding: 0;
+    padding-top: 20px;
+    margin: 0;
+}
+.register > form > .leftRegisterData{
+    grid-area: b;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 10px;
+    justify-items: center;
+}
+.register > form > .rightRegisterData{
+    grid-area: c;
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    padding: 10px;
+    justify-items: center;
+}
+.register > form > div{
+    padding-top: 0;
+}
+.register > form > div > label{
+    width: 90%;
+    text-align: left;
+    padding-bottom: 5px;
+    padding-top: 20px;
+    padding-left: 5px;
+}
+.register > form > div > label:first-of-type{
+    padding-top: 0px;
+}
+.register > form > div > input{
+    width: 90%;
+    text-indent: 5px;
+    height: 25px;
+    border: none;
+    box-shadow: rgba(0,0,0,0.25) 0px 1px 2px 0px;
+    text-align: left;
+    padding: 5px;
+    outline: none;
+}
+.register > form > button[type="submit"]{
+    grid-area: d;
+    padding: 10px 30px 10px 30px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    font-family: Inter;
+    font-size: 18px;
+    color: #fff;
+    background-color: #1673be;
+    cursor: pointer;
+    transition: 0.1s;
+    box-shadow: rgba(0,0,0,0.25) 0px 1px 2px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.register > form > button[type="submit"]:hover{
+    padding: 10px 30px 10px 30px;
+    margin-top: 9px;
+    margin-bottom: 11px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    font-family: Inter;
+    color: #fff;
+    background-color: #1673be;
+    cursor: pointer;
+    transition: 0.15s;
+    box-shadow: rgba(0,0,0,0.25) 0px 2px 2px 0px;
+}
