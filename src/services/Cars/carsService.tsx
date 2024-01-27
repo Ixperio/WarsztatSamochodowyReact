@@ -7,6 +7,9 @@ const carService = {
 
   test: async () => {
     return apiService.get(routeLinkPerfix+'/Test')
+  },
+  getFuel: async () => {
+    return apiService.get(routeLinkPerfix+'/GetFuelTypes')
   }
 
 };

@@ -1,9 +1,6 @@
 body{
   padding: 0;
   margin: 0;
-}
-
-body{
   text-align: center;
 }
 
@@ -19,4 +16,38 @@ body{
 
 .navbar{
   font-weight: bold;
+}
+
+.author{
+  font-weight: bold;
+  display: inline;
+}
+
+.list_title{
+  font-weight: bold;
+  font-size: x-large;
+  font-family: Inter;
+  margin-bottom: 15px;
+}
+
+/* .list_item_id, .list_item_name, .list_item_isdone{
+  font-weight: bold;
+}
+
+.list_item{
+  display: grid; 
+}
+
+.list_items{
+  width: 100%;
+  display: grid;
+}
+
+.list_value{
+  font-weight: normal;
+} */
+
+.registered_cars{
+  width: 100%;
+  table-layout: fixed;
 }

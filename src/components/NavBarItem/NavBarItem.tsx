@@ -10,7 +10,6 @@ interface NavBarItemProps {
 const NavBarItem: React.FC<NavBarItemProps> = (props) => {
     const navigate = useNavigate();
     const handleClick = () => {
-        // Przykład użycia navigate do przekierowania do innej ścieżki
         navigate(props.link);
       };
     return(
