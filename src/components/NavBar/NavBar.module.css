@@ -1,0 +1,9 @@
+.navbar{
+    display: inline-flex;
+
+}
+
+h2{
+    display: inline;
+    margin-left: 40px;
+}
