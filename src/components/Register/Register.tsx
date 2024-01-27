@@ -1,7 +1,12 @@
 
 import './Register.css';
+import { Link } from 'react-router-dom'
+import { useGlobalLinks } from '../../GlobalLinks';
 
 const Register = () => {
+
+    const { loginLink } = useGlobalLinks();
+
     return (
         <div className="register">
         <form>
@@ -35,7 +40,9 @@ const Register = () => {
             </div>
             <div className="line line2"></div>
             <button type="submit">Załóż konto</button>
-
+            <Link to = {loginLink}>
+                <p>Wróć do logowania</p>
+            </Link>
         </form>
         </div>
     )
