@@ -5,7 +5,7 @@ interface FooterProps {}
 
 const Footer: FC<FooterProps> = () => (
   <div className={styles.Footer}>
-    Made by <p className='author'>Artur L.</p> & <p className='author'>Marcin Ż.</p>
+    Made by <a className='author'>Artur L.</a> & <a className='author'>Marcin Ż.</a>
   </div>
 );
 
