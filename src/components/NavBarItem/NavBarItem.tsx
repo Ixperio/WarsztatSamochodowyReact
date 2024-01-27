@@ -1,19 +1,20 @@
+import "./NavBarItem.css"
 import React from "react";
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
 interface NavBarItemProps {
     children: React.ReactNode;
     link: string;
-  }
+}
 
-  const NavBarItem: React.FC<NavBarItemProps> = (props) => {
+const NavBarItem: React.FC<NavBarItemProps> = (props) => {
+    const navigate = useNavigate();
+    const handleClick = () => {
+        // Przykład użycia navigate do przekierowania do innej ścieżki
+        navigate(props.link);
+      };
     return(
-        <>
-        <Link to = {props.link}>
-            <h2>{props.children}</h2>
-        </Link>
-
-        </>
+        <p onClick={handleClick}>{props.children}</p>
     )
 }
 
