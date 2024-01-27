@@ -1,36 +1,65 @@
 import './Login.css';
-import { Link } from 'react-router-dom'
 import { useGlobalLinks } from '../../GlobalLinks'
-import personService from '../../services/Persons/personService'
+import apiService from '../../services/apiService'
+import NavBarItem from '../NavBarItem/NavBarItem';
 
 const Login = () => {
 
     const { registerLink } = useGlobalLinks();
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const makeTest = async () => {
+        try {
+              // Wywołaj funkcję test z carService
+              const response : string = await apiService.getTestPerson();
+              
+              if(response == "Success"){
+                console.log("API Działa");
+                return true;
+              }else{
+                console.log("Nie działa API");
+                return false;
+              }
+
+            } catch (error) {
+              console.error('Błąd pobierania danych żądania');
+              return false;
+            }
+        };
+
+
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+
         event.preventDefault();
 
         const formData = new FormData(event.currentTarget);
-        const username = formData.get('username');
-        const password = formData.get('password');
-
-        const fetchData = async () => {
-            try {
-              // Wywołaj funkcję test z carService
-              const response = await personService.test();
+        const username : string | undefined = formData.get('username')?.toString();
+        const password : string | undefined  = formData.get('password')?.toString();
+        //przetestuj API   
+        const test : boolean = await makeTest(); 
             
-              console.log('Otrzymana odpowiedź:', response);
-            } catch (error) {
-              console.error('Błąd pobierania danych żądania');
-            }
-          };
-      
-        fetchData();
+        if(test){
+            //typy nie są undefined
+            if(username != undefined && password != undefined){
 
-        console.log('Username:', username);
-        console.log('Password:', password);
+                const wynik : boolean = await apiService.postUserLogin(username, password);
+
+                if(wynik){
+                    //PRZEKIEROWUJE DO USER ACCOUNT
+                    console.log("ZALOGOWANO!");
+                }else{
+                    // NIE ROBI NIC
+                    console.log("ZŁE DANE LOGOWANIA!");
+                }
+                
+            }else{
+                console.log("Wartości nie mogą być puste!");
+            }
+        }else{
+            console.log("API NIE DZIAŁA!");
+        }
+
+    };
         
-      };
     return (
         <div className="login">
         <form onSubmit={handleSubmit}>
@@ -44,9 +73,7 @@ const Login = () => {
             <br />
             <div className="line"></div>
             <button type="submit">Zaloguj się</button>
-            <Link to = {registerLink}>
-                <p>Nie masz konta? - Załóż je <strong>tutaj</strong></p>
-            </Link>
+            <NavBarItem link = {registerLink}><p className='link'>Nie masz konta? - Załóż je <strong>tutaj</strong></p></NavBarItem>
         </form>
         </div>
     )

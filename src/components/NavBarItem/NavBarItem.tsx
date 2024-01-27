@@ -14,7 +14,7 @@ const NavBarItem: React.FC<NavBarItemProps> = (props) => {
         navigate(props.link);
       };
     return(
-        <p onClick={handleClick}>{props.children}</p>
+        <a onClick={handleClick} className="navItemStyle">{props.children}</a>
     )
 }
 

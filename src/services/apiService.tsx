@@ -1,23 +1,83 @@
+import Cookies from 'js-cookie';
 
 const baseUrl = 'https://localhost:7169/api'; 
 
-interface ResponseData {
-    jsonResponse: string
+
+interface TestCar {
+    controller: boolean,
+    service: boolean,
+    repository: boolean
+}
+
+interface TrustString {
+    trustString: string
 }
 
 const apiService = {
-  get: async (url: string): Promise<ResponseData> => {
-    const response = await fetch(baseUrl + url);
-    return handleResponse(response);
+  getTestCar: async (): Promise<TestCar> => {
+    const response = await fetch(baseUrl + '/Car/Test');
+   
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Coś poszło nie tak!');
+      }
+    
+      const data: TestCar = await response.json();
+      return data;
+  },
+  getTestPerson: async (): Promise<string> => {
+    const response = await fetch(baseUrl + '/Persons/Test');
+   
+    if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.message || 'Coś poszło nie tak!');
+      }
+    
+      const data = await response.json();
+      return data;
   },
 
+  postUserLogin: async (userEmail: string, userPassword: string): Promise<boolean> => {
+
+    Cookies.remove('trustString');
+
+    type DataType = {
+        email: string,
+        password: string
+    }
+
+    const data: DataType = {
+        email: userEmail,
+        password: userPassword
+    };
+
+    const response = await fetch(baseUrl + '/Persons/Login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+
+        return false;
+
+      }else{
+
+        const dataResponse : TrustString = await response.json();
+
+        Cookies.set('trustString', dataResponse.trustString, { expires: 7 });
+
+        return true;
+      }
+    
+  }
+
+/*
   post: async (url: string, data: Record<string, any>): Promise<ResponseData> => {
     const response = await fetch(baseUrl + url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
+     
     });
     return handleResponse(response);
   },
@@ -38,17 +98,10 @@ const apiService = {
       method: 'DELETE',
     });
     return handleResponse(response);
-  },
-};
+  } */
 
-const handleResponse = async (response: Response): Promise<ResponseData> => {
-  if (!response.ok) {
-    const error = await response.json();
-    throw new Error(error.message || 'Coś poszło nie tak!');
-  }
 
-  const data: ResponseData = await response.json();
-  return data;
-};
+
+}; 
 
 export default apiService;

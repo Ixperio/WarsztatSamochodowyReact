@@ -1,4 +1,4 @@
-nav>div>p{
+nav>div>.navItemStyle, p{
     font-size: 20px;
     margin-left: auto;
     padding-top: none;
@@ -8,7 +8,7 @@ nav>div>p{
     cursor: pointer;
     user-select: none;
 }
-nav>div>p:hover{
+nav>div>.navItemStyle:hover,p:hover{
     color: rgb(43, 103, 233)
 }
 
