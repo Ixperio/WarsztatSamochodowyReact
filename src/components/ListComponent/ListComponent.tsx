@@ -6,7 +6,9 @@ interface ListComponentProps{
     id: number;
     name: string;
     done: boolean;
+    random: boolean;
 }
+
 
 const ListComponent: React.FC<ListComponentProps> = (props) =>{
     let isdone: string
@@ -16,11 +18,12 @@ const ListComponent: React.FC<ListComponentProps> = (props) =>{
         isdone = "Nie"
     }
     return(
-        <>
-        <h3>ID: {props.id}</h3>
-        <h3>Nazwa: {props.name}</h3>
-        <h3>Czy zrobione: {isdone}</h3><br />
-        </>
+        <tr className="list_item">
+            <td className="list_value">{props.id}</td>
+            <td className="list_value">{props.name}</td>
+            <td className="list_value">{isdone}</td>
+            { props.random ? (<td>Essa</td>):("")}
+        </tr>
     )
 }
 export default ListComponent;

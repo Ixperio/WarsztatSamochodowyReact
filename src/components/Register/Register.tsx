@@ -1,11 +1,43 @@
 
 import './Register.css';
-import { Link } from 'react-router-dom'
 import { useGlobalLinks } from '../../GlobalLinks';
+import NavBarItem from '../NavBarItem/NavBarItem';
+import apiService from '../../services/apiService';
 
 const Register = () => {
 
     const { loginLink } = useGlobalLinks();
+   
+    //DEFINICJA INTERFEJSU JSON RESPONSE
+    interface WartosciTestowe {
+        controller: boolean,
+        service: boolean,
+        repository: boolean
+    }
+
+    const makeTest = async () => {
+        try {
+          // Wywołaj funkcję test z carService
+          const response = await apiService.getTestCar();
+
+          const wynik : WartosciTestowe = response;
+
+          if(wynik.service == true &&
+             wynik.controller == true &&
+             wynik.repository == true){
+                console.log('Test API zakończony sukcesem!');
+             }else{
+                console.log('Test API nie powiódł się!');
+             }
+          
+        } catch (error) {
+          console.error('Błąd pobierania danych żądania');
+        }
+      };
+  
+      
+
+      makeTest();
 
     return (
         <div className="register">
@@ -40,9 +72,7 @@ const Register = () => {
             </div>
             <div className="line line2"></div>
             <button type="submit">Załóż konto</button>
-            <Link to = {loginLink}>
-                <p>Wróć do logowania</p>
-            </Link>
+            <NavBarItem link = {loginLink}>Wróć do logowania</NavBarItem>
         </form>
         </div>
     )
