@@ -1,0 +1,6 @@
+.navItemStyle{
+    width: max-content;
+    display: block;
+    cursor:pointer;
+    font-size: 16px;
+}
