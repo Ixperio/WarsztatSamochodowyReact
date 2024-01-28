@@ -8,6 +8,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import Home from './components/Home';
 import List from './pages/List';
+import Profile from './pages/Profile';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
       <Route path='*' element={<NotFound/>}/>
       <Route path="/User/Login" element={<Login/>} />
       <Route path="/User/Register" element={<Register/>} />
+      <Route path="/User/Profile" element={<Profile/>} />
     </Routes>
     <Footer />
   </>

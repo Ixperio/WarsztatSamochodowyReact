@@ -18,6 +18,17 @@ interface FuelTypes{
   name: string
 }
 
+interface UserData{
+  name: string,
+  surname: string,
+  birthday: string,
+  email: string,
+  city: string,
+  postCode: string,
+  adress: string,
+  phone: string
+}
+
 const apiService = {
   getTestCar: async (): Promise<TestCar> => {
     const response = await fetch(baseUrl + '/Car/Test');
@@ -124,6 +135,43 @@ const apiService = {
         return false;
       }else{
         return true;
+      }
+    
+    }
+
+  },
+
+  getUserData: async (): Promise<UserData> => {
+    
+    // Cookies.get("trustString")
+    if(Cookies.get("trustString") == undefined){
+      console.log("NIEZALOGOWANY")
+      throw new Error('Coś poszło nie tak!');
+    }else{
+      const trustString: string | undefined = Cookies.get("trustString")
+      if(trustString !== undefined){
+      }
+      
+      type DataType = {
+        truststring: string | undefined,
+    }
+
+    const data: DataType = {
+        truststring: trustString
+    };
+
+    const response = await fetch(baseUrl + '/Persons/GetUserData', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    });
+
+    if (!response.ok) {
+      throw new Error('Coś poszło nie tak!');
+      }else{
+        return await response.json();
       }
     
     }
