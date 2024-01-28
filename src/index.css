@@ -1,6 +1,6 @@
 #root{
     display: grid;
-    grid-template-rows: min-content auto max-content;
+    grid-template-rows: 70px auto max-content;
     width: 100vw;
     margin: 0;
     padding: 0;
