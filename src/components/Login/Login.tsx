@@ -2,9 +2,10 @@ import './Login.css';
 import { useGlobalLinks } from '../../GlobalLinks'
 import apiService from '../../services/apiService'
 import NavBarItem from '../NavBarItem/NavBarItem';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-
+    const navigator = useNavigate();
     const { registerLink } = useGlobalLinks();
 
     const makeTest = async () => {
@@ -45,6 +46,8 @@ const Login = () => {
 
                 if(wynik){
                     //PRZEKIEROWUJE DO USER ACCOUNT
+                    navigator("/User/Profile");
+
                     console.log("ZALOGOWANO!");
                 }else{
                     // NIE ROBI NIC

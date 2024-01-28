@@ -7,9 +7,10 @@ const List = () =>{
     let epe: object
     let eppe: boolean
     const testing = async () =>{
+        eppe = await apiService.isUserLogged();
         epe = await apiService.getFuelTypes();
         console.log(epe)
-        eppe = await apiService.isUserLogged();
+        
 
     }
 

@@ -96,7 +96,7 @@ const apiService = {
   isUserLogged: async (): Promise<boolean> => {
     
     // Cookies.get("trustString")
-    if(Cookies.get("trustString") !== undefined){
+    if(Cookies.get("trustString") == undefined){
       console.log("NIEZALOGOWANY")
       return false;
     }else{
