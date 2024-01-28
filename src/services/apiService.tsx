@@ -52,6 +52,30 @@ interface UserUpdate{
   data: string,
   trustString: string
 }
+//Samochody interfejsy
+
+interface WersjaMarkaPaliwo{
+  name: string
+}
+
+interface ModelSamochodu{
+  name: string;
+  wersjaNadwozia: WersjaMarkaPaliwo;
+  marka: WersjaMarkaPaliwo;
+
+}
+
+interface MyCar{
+  id: number;
+  vin: string;
+  nazwa: string;
+  modelSamochodu: ModelSamochodu
+  rokProdukcji: number;
+  rodzajPaliwa: WersjaMarkaPaliwo;
+  pojemnoscSkokowa: number;
+  prezbieg: number;
+  nr_rejestracyjny: string;
+}
 
 
 let isLogged : boolean = false;
@@ -462,7 +486,37 @@ const apiService = {
     }else{
       return false;
     }
-  } 
+  },
+  //CAR rzeczy tutaj
+  getMyCars: async (): Promise<MyCar | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : TrustString = {
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetMyCars', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  }
 
 }; 
 
