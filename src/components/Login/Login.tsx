@@ -68,10 +68,10 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
             <h3>Logowanie</h3>
             <div className="line"></div>
-            <label>Login:</label>
+            <label>Podaj email:</label>
             <input type="text" name="username" />
             <br />
-            <label>Hasło:</label>
+            <label>Podaj hasło:</label>
                 <input type="password" name="password" />
             <br />
             <div className="line"></div>
