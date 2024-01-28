@@ -9,6 +9,7 @@ import Register from './components/Register/Register';
 import Home from './components/Home';
 import List from './pages/List';
 import Profile from './pages/Profile';
+import Edit from './pages/Edit';
 
 function App() {
 
@@ -26,6 +27,7 @@ function App() {
       <Route path="/User/Login" element={<Login/>} />
       <Route path="/User/Register" element={<Register/>} />
       <Route path="/User/Profile" element={<Profile/>} />
+      <Route path="/User/Edit" element={<Edit/>} />
     </Routes>
     <Footer />
   </>
