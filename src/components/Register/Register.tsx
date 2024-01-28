@@ -5,7 +5,7 @@ import NavBarItem from '../NavBarItem/NavBarItem';
 import apiService from '../../services/apiService';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const Register = () => {
 
@@ -20,6 +20,18 @@ const Register = () => {
         service: boolean,
         repository: boolean
     }
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const fetchedUserData = await apiService.isUserLogged();
+    
+          if (fetchedUserData == true) {
+            navigator("/User/Profile");
+          } 
+        };
+    
+        fetchData(); 
+      }, []); 
 
     const makeTest = async () => {
         try {

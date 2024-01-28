@@ -147,10 +147,15 @@ const apiService = {
       }else{
 
         const dataResponse : TrustString = await response.json();
-
-        Cookies.set('trustString', dataResponse.trustString, { expires: 7 });
-        isLogged = true;
-        return true;
+      
+        if(dataResponse == null){
+          return false;
+        }else{
+          Cookies.set('trustString', dataResponse.trustString, { expires: 7 });
+          isLogged = true;
+          return true;
+        }
+        
       }
     
   },
