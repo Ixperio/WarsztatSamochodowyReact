@@ -1,6 +1,7 @@
 .login{
     display: grid;
     place-items: center;
+    transform: scale(1.2);
 }
 .login > form{
 
@@ -24,6 +25,9 @@
     padding-bottom: 5px;
     padding-left: 5px;
 }
+.login > form > label:nth-of-type(2){
+    margin-top: 15px;
+}
 .login > form > .line{
     width: 90%;
     margin-left: 5%;
@@ -34,6 +38,10 @@
     height: 1px;
     background-color: #cfcfcf;
 }
+.login > form > .line:nth-of-type(2){
+    margin-top: 20px;
+}
+
 .login > form > input{
     max-width: 300px;
     width: auto;
@@ -44,6 +52,7 @@
     text-align: left;
     padding: 5px;
     outline: none;
+    
 }
 .login > form > button[type="submit"]{
     padding: 10px 30px 10px 30px;
@@ -60,7 +69,12 @@
     margin-top: 10px;
     margin-bottom: 15px;
 }
-.login > form > button[type="submit"]:hover{
+.login > form > button[type="submit"]:disabled{
+    background-color: #afafaf;
+    transition: 0.15s;
+    cursor:not-allowed;
+}
+.login > form > button[type="submit"]:enabled:hover{
     padding: 10px 30px 10px 30px;
     margin-top: 9px;
     margin-bottom: 16px;
