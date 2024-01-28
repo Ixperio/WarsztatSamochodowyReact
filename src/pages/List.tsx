@@ -1,8 +1,20 @@
 import ListComponent from "../components/ListComponent/ListComponent";
 import '../App.css'
+import apiService from "../services/apiService";
 
 //komponent prezentacyjny
 const List = () =>{
+    let epe: object
+    let eppe: boolean
+    const testing = async () =>{
+        epe = await apiService.getFuelTypes();
+        console.log(epe)
+        eppe = await apiService.isUserLogged();
+
+    }
+
+    testing();
+
     return(
         <div>
             <div className="list_title">Lista zarejestrowanych w bazie pojazdów:</div>
