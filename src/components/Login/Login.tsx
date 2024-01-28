@@ -2,9 +2,10 @@ import './Login.css';
 import { useGlobalLinks } from '../../GlobalLinks'
 import apiService from '../../services/apiService'
 import NavBarItem from '../NavBarItem/NavBarItem';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-
+    const navigator = useNavigate();
     const { registerLink } = useGlobalLinks();
 
     const makeTest = async () => {
@@ -45,6 +46,8 @@ const Login = () => {
 
                 if(wynik){
                     //PRZEKIEROWUJE DO USER ACCOUNT
+                    navigator("/User/Profile");
+
                     console.log("ZALOGOWANO!");
                 }else{
                     // NIE ROBI NIC
@@ -65,10 +68,10 @@ const Login = () => {
         <form onSubmit={handleSubmit}>
             <h3>Logowanie</h3>
             <div className="line"></div>
-            <label>Login:</label>
+            <label>Podaj email:</label>
             <input type="text" name="username" />
             <br />
-            <label>Hasło:</label>
+            <label>Podaj hasło:</label>
                 <input type="password" name="password" />
             <br />
             <div className="line"></div>

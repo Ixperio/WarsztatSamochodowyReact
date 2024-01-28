@@ -1,4 +1,5 @@
 nav>div>.navItemStyle, p{
+    width: max-content;
     font-size: 20px;
     margin-left: auto;
     padding-top: none;
@@ -11,7 +12,6 @@ nav>div>.navItemStyle, p{
     margin: 0;
     display: grid;
     place-items: center;
-    width: max-content;
 }
 nav>div>.navItemStyle:hover,p:hover{
     color: rgb(43, 103, 233)
@@ -26,4 +26,5 @@ p{
     margin: 0;
     display: grid;
     place-items: center;
+    width: max-content;
 }

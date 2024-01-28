@@ -8,8 +8,10 @@
     grid-template-areas: "a a"
                          "e e"
                          "b c"
+                         "g g"
                          "f f"
-                         "d d";
+                         "d d"
+                         "i i";
     place-items: center;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: 20px;
@@ -117,4 +119,30 @@
     cursor: pointer;
     transition: 0.15s;
     box-shadow: rgba(0,0,0,0.25) 0px 2px 2px 0px;
+}
+.register > form > .toLogin{
+    width: 100%;
+    grid-area: i;
+    place-items: center;
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+    font-style: italic;
+    transition: 0.1s;   
+    color: #000;
+}
+.register > form > .toLogin:hover{
+    transition: 0.2s;   
+    color: rgb(43, 103, 233);
+
+}
+.register > form > .error{
+    color: red;
+    font-size: 13px;
+    width: 100%;
+    grid-area: g;
+    display: grid;
+    align-items: center;
+    padding: 5px;
+    text-align: center;
 }
