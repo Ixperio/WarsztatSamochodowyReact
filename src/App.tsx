@@ -10,6 +10,7 @@ import Home from './components/Home';
 import List from './pages/List';
 import Profile from './pages/Profile';
 import Edit from './pages/Edit';
+import DeleteUser from './pages/DeleteUser';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       <Route path="/User/Register" element={<Register/>} />
       <Route path="/User/Profile" element={<Profile/>} />
       <Route path="/User/Edit" element={<Edit/>} />
+      <Route path="/User/Delete" element={<DeleteUser/>} />
     </Routes>
     <Footer />
   </>

@@ -1,6 +1,6 @@
 interface DisplayDataProps {
     children: React.ReactNode;
-    value: string;
+    value: string | undefined;
 }
 
 

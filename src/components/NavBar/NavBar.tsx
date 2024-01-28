@@ -34,6 +34,10 @@ const NavBar = () => {
           <p><NavBarItem link="User/Profile">User Profile</NavBarItem></p>
         ) : (
           <p><NavBarItem link="User/Login">Login/Register</NavBarItem></p>
+          
+        )}
+        {isLogged && (
+          <p><NavBarItem link="/List">Car List</NavBarItem></p>
         )}
         <p className='fat'></p>
       </div>
