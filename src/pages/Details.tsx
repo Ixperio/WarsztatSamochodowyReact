@@ -6,7 +6,7 @@ const Details = () => {
     const {id} = useParams();
     return(
         <>
-            <h1>Details</h1><br />
+            <h1>Details</h1>
             {id}
         </>
 

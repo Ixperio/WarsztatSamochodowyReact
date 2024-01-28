@@ -34,7 +34,8 @@ const Profile = () =>{
                 <DisplayData value={userdata.adress}>Adres:</DisplayData>
                 <DisplayData value={userdata.birthday}>Data urodzin:</DisplayData>
             </div>
-            <Button link={"/User/Edit"}>Edytuj</Button>
+            <Button link={"/User/Edit"}>Edytuj</Button><br />
+            <Button link={"/User/Delete"}>Usuń Konto</Button>
         </div>
     )
 }

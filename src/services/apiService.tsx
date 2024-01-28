@@ -41,6 +41,14 @@ interface RegisterUser{
     terms: boolean
 }
 
+//UPDATE USER DATA
+
+interface UserUpdate{
+    data: string,
+    trustString: string
+}
+
+
 let isLogged : boolean = false;
 
 const apiService = {
@@ -231,35 +239,224 @@ const apiService = {
         //użytkownik jest zalogowany , przejdź do jego konta
         return false;
     }
-  }
-
-/*
-  post: async (url: string, data: Record<string, any>): Promise<ResponseData> => {
-    const response = await fetch(baseUrl + url, {
-     
-    });
-    return handleResponse(response);
   },
 
-  put: async (url: string, data: Record<string, any>): Promise<ResponseData> => {
-    const response = await fetch(baseUrl + url, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    });
-    return handleResponse(response);
+  //UPDATY , Z WYKORZYSTANIEM PUT
+  updateName: async (newName: string): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : UserUpdate = {
+          data: newName,
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Persons/UpdateName', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
+    }
+    
   },
 
-  delete: async (url: string): Promise<ResponseData> => {
-    const response = await fetch(baseUrl + url, {
-      method: 'DELETE',
-    });
-    return handleResponse(response);
-  } */
+  updateSurname: async (newSurname: string): Promise<boolean> => {
 
+    const cookie : string | undefined = Cookies.get("trustString");
 
+    if(cookie !== undefined){
+
+        const data : UserUpdate = {
+          data: newSurname,
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Persons/UpdateSurname', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
+    }
+    
+  },
+
+  updatePhone: async (newPhone: string): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : UserUpdate = {
+          data: newPhone,
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Persons/UpdatePhone', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
+    }
+    
+  },
+
+  updateAddress: async (newAddress: string): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : UserUpdate = {
+          data: newAddress,
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Persons/UpdateAdress', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
+    }
+    
+  },
+
+  updateCity: async (newCity: string): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : UserUpdate = {
+          data: newCity,
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Persons/UpdateCity', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
+    }
+    
+  },
+
+  updatePost: async (newPost: string): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : UserUpdate = {
+          data: newPost,
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Persons/UpdateCity', {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
+    }
+    
+  },
+  //DELETE - WYKORZYSTANIE DELETE
+  delete: async (password: string): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : UserUpdate = {
+          data: password,
+          trustString: cookie
+        }
+
+      const response = await fetch(baseUrl + '/Persons/UserDelete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+      
+      if(!response.ok){
+        return true;
+      }else{
+        return false;
+      }
+
+    }else{
+      return false;
+    }
+  } 
 
 }; 
 
