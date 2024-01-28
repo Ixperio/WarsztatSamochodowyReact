@@ -51,7 +51,7 @@ const List: React.FC = () => {
                   <th>Nr Rejestracyjny</th>
                 </tr>
                 {cars.map((car) => (
-                  <ListComponent key={car.id} name={car.nazwa} id={car.id} rejestracja={car.nr_rejestracyjny} />
+                         <ListComponent key={car.id} name={car.nazwa} id={car.id} rejestracja={car.nr_rejestracyjny} />
                 ))}
               </tbody>
             </table>

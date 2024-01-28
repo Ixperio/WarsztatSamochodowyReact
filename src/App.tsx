@@ -11,6 +11,7 @@ import List from './pages/List';
 import Profile from './pages/Profile';
 import Edit from './pages/Edit';
 import DeleteUser from './pages/DeleteUser';
+import CarDetails from './pages/List/[id]';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
     <Header/>
     <Routes>
       <Route path='/list' element={<List/>}/>
+      <Route path='/list/:id' element={<CarDetails/>}/>
       <Route path='/' element={<Home/>}/>
       <Route path='/home' element={<Home/>}/>
       <Route path='/details' element={<Details/>}/>

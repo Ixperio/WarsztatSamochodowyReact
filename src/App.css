@@ -78,3 +78,11 @@ button{
   margin-top: 10px;
   margin-bottom: 10px;
 }
+
+.list_value{
+  cursor: pointer;
+}
+
+.list_item:hover{
+  color: blue;
+}
