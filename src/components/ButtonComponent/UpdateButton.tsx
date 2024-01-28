@@ -11,7 +11,6 @@ const Button: React.FC<ButtonProps> = (props) =>{
     let x: number = 0;
     switch (props.value){
         case "UpdateName":
-            console.log(props.data)
             x = 1
             break;
         case "UpdateSurname":
@@ -20,7 +19,7 @@ const Button: React.FC<ButtonProps> = (props) =>{
         case "UpdatePhone":
             x = 3
             break;
-        case "UpdateAddress":
+        case "UpdateAdress":
             x = 4
             break;
          case "UpdateCity":
@@ -38,7 +37,21 @@ const Button: React.FC<ButtonProps> = (props) =>{
             case 1:
                 apiService.updateName(props.data)
                 break;
-        
+            case 2:
+                apiService.updateSurname(props.data)
+                break;
+            case 3:
+                apiService.updatePhone(props.data)
+                break;
+            case 4:
+                apiService.updateAddress(props.data)
+                break;
+            case 5:
+                apiService.updateCity(props.data)
+                break;
+            case 6:
+                apiService.updatePost(props.data)
+                break;
             default:
                 console.error("Updating index wrong!")
                 break;
