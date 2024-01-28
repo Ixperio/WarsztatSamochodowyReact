@@ -14,7 +14,7 @@ const Button: React.FC<ButtonProps> = (props) =>{
     };
     const buttonStyle: React.CSSProperties | undefined =
     typeof props.style === 'string'
-      ? { backgroundColor: props.style } // Assuming the string is a color value
+      ? { backgroundColor: props.style} // Assuming the string is a color value
       : props.style;
     return(
         <button type="button" onClick={handleClick} style={buttonStyle}>{props.children}</button>

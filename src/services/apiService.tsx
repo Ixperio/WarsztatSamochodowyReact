@@ -13,7 +13,7 @@ interface TrustString {
     trustString: string
 }
 
-interface FuelTypes{
+interface FuelCarTypes{
   id: number,
   name: string
 }
@@ -52,6 +52,30 @@ interface UserUpdate{
   data: string,
   trustString: string
 }
+//Samochody interfejsy
+
+interface WersjaMarkaPaliwo{
+  name: string
+}
+
+interface ModelSamochodu{
+  name: string;
+  wersjaNadwozia: WersjaMarkaPaliwo;
+  marka: WersjaMarkaPaliwo;
+
+}
+
+interface MyCar{
+  id: number;
+  vin: string;
+  nazwa: string;
+  modelSamochodu: ModelSamochodu
+  rokProdukcji: number;
+  rodzajPaliwa: WersjaMarkaPaliwo;
+  pojemnoscSkokowa: number;
+  prezbieg: number;
+  nr_rejestracyjny: string;
+}
 
 
 let isLogged : boolean = false;
@@ -82,7 +106,7 @@ const apiService = {
       return data;
   },
  //POBIERANIE RDZAJÓW PALIW
-  getFuelTypes: async (): Promise<FuelTypes> => {
+  getFuelTypes: async (): Promise<FuelCarTypes> => {
     const response = await fetch(baseUrl + '/Car/GetFuelTypes');
    
     if (!response.ok) {
@@ -123,10 +147,15 @@ const apiService = {
       }else{
 
         const dataResponse : TrustString = await response.json();
-
-        Cookies.set('trustString', dataResponse.trustString, { expires: 7 });
-        isLogged = true;
-        return true;
+      
+        if(dataResponse == null){
+          return false;
+        }else{
+          Cookies.set('trustString', dataResponse.trustString, { expires: 7 });
+          isLogged = true;
+          return true;
+        }
+        
       }
     
   },
@@ -462,7 +491,96 @@ const apiService = {
     }else{
       return false;
     }
-  } 
+  },
+  //Lista smaochodów usera
+  getMyCars: async (): Promise<MyCar | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : TrustString = {
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetMyCars', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  },
+  //Lista dostępnych typów pojazdów
+  getCarModelTypes: async (): Promise<FuelCarTypes | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : TrustString = {
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetCarModelTypes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  },
+  getCarModel: async (): Promise<FuelCarTypes | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : TrustString = {
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetCarModels', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  }
 
 }; 
 
