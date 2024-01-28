@@ -43,9 +43,14 @@ interface RegisterUser{
 
 //UPDATE USER DATA
 
-interface UserUpdate{
-    data: string,
+interface UserUpdate2{
+    name: string,
     trustString: string
+}
+
+interface UserUpdate{
+  data: string,
+  trustString: string
 }
 
 
@@ -248,8 +253,8 @@ const apiService = {
 
     if(cookie !== undefined){
 
-        const data : UserUpdate = {
-          data: newName,
+        const data : UserUpdate2 = {
+          name: newName,
           trustString: cookie
         }
     
