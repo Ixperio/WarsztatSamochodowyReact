@@ -13,7 +13,7 @@ interface TrustString {
     trustString: string
 }
 
-interface FuelTypes{
+interface FuelCarTypes{
   id: number,
   name: string
 }
@@ -106,7 +106,7 @@ const apiService = {
       return data;
   },
  //POBIERANIE RDZAJÓW PALIW
-  getFuelTypes: async (): Promise<FuelTypes> => {
+  getFuelTypes: async (): Promise<FuelCarTypes> => {
     const response = await fetch(baseUrl + '/Car/GetFuelTypes');
    
     if (!response.ok) {
@@ -487,7 +487,7 @@ const apiService = {
       return false;
     }
   },
-  //CAR rzeczy tutaj
+  //Lista smaochodów usera
   getMyCars: async (): Promise<MyCar | undefined> => {
 
     const cookie : string | undefined = Cookies.get("trustString");
@@ -499,6 +499,65 @@ const apiService = {
         }
     
         const response = await fetch(baseUrl + '/Car/GetMyCars', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  },
+  //Lista dostępnych typów pojazdów
+  getCarModelTypes: async (): Promise<FuelCarTypes | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : TrustString = {
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetCarModelTypes', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  },
+  getCarModel: async (): Promise<FuelCarTypes | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : TrustString = {
+          trustString: cookie
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetCarModels', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

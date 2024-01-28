@@ -2,6 +2,7 @@ import ListComponent from "../components/ListComponent/ListComponent";
 import '../App.css'
 import apiService from "../services/apiService";
 import { useEffect, useState } from "react";
+import Button from "../components/ButtonComponent/Button";
 
 interface WersjaMarkaPaliwo{
     name: string
@@ -58,6 +59,7 @@ const List: React.FC = () => {
           ) : (
             <p>Loading...</p>
           )}
+          <Button link="/AddCar">Add Car</Button>
         </div>
       </div>
     );

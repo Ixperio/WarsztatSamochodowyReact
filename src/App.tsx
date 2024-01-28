@@ -12,6 +12,7 @@ import Profile from './pages/Profile';
 import Edit from './pages/Edit';
 import DeleteUser from './pages/DeleteUser';
 import CarDetails from './pages/List/[id]';
+import AddCar from './pages/AddCar';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
       <Route path="/User/Profile" element={<Profile/>} />
       <Route path="/User/Edit" element={<Edit/>} />
       <Route path="/User/Delete" element={<DeleteUser/>} />
+      <Route path="/AddCar" element={<AddCar/>} />
     </Routes>
     <Footer />
   </>
