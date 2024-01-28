@@ -171,12 +171,12 @@ const apiService = {
 
   },
 
-  getUserData: async (): Promise<UserData> => {
+  getUserData: async (): Promise<UserData | undefined> => {
     
     // Cookies.get("trustString")
     if(Cookies.get("trustString") == undefined){
       console.log("NIEZALOGOWANY")
-      throw new Error('Coś poszło nie tak!');
+      return undefined;
     }else{
       const trustString: string | undefined = Cookies.get("trustString")
       if(trustString !== undefined){
@@ -452,7 +452,8 @@ const apiService = {
         body: JSON.stringify(data),
       });
       
-      if(!response.ok){
+      if(response.ok){
+        Cookies.remove("trustString")
         return true;
       }else{
         return false;

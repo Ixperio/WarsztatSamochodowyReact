@@ -75,5 +75,6 @@ button{
   width: max-content;
   height: max-content;
   font-size: 15px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
