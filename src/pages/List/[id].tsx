@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import apiService from "../../services/apiService";
 import DisplayData from "../../components/DisplayDataComponent/DisplayData";
 import { useParams } from "react-router-dom";
+import UpdateButton from "../../components/ButtonComponent/UpdateButton";
 
 interface WersjaMarkaPaliwo{
     name: string
@@ -58,16 +59,21 @@ const CarDetails = () => {
         <div className="list_title">Szczegóły pojazdu:</div>
         {cars ? (
   cars.length > 0 ? (
-    <div className="user_data">
-        <DisplayData value={cars.find(car => car.id === currentId)?.nazwa || "No cars found"}>Nazwa</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.nr_rejestracyjny || "No cars found"}>Nr. Rejestracyjny</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.vin || "No cars found"}>Vin</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.rodzajPaliwa.name || "No cars found"}>Rodzaj paliwa</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.modelSamochodu.marka.name || "No cars found"}>Marka</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.modelSamochodu.wersjaNadwozia.name || "No cars found"}>Wersja Nadwozia:</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.przebieg || "No cars found"}>Przebieg</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.pojemnoscSkokowa || "No cars found"}>Pojemność skokowa:</DisplayData>
-        <DisplayData value={cars.find(car => car.id === currentId)?.rokProdukcji || "No cars found"}>Rok produkcji</DisplayData>
+    <div>
+        <div className="user_data">
+            <DisplayData value={cars.find(car => car.id === currentId)?.nazwa || "No cars found"}>Nazwa</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.nr_rejestracyjny || "No cars found"}>Nr. Rejestracyjny</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.vin || "No cars found"}>Vin</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.rodzajPaliwa.name || "No cars found"}>Rodzaj paliwa</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.modelSamochodu.marka.name || "No cars found"}>Marka</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.modelSamochodu.wersjaNadwozia.name || "No cars found"}>Wersja Nadwozia:</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.przebieg || "No cars found"}>Przebieg</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.pojemnoscSkokowa || "No cars found"}>Pojemność skokowa:</DisplayData>
+            <DisplayData value={cars.find(car => car.id === currentId)?.rokProdukcji || "No cars found"}>Rok produkcji</DisplayData>
+        </div>
+        <input type="text" placeholder="Podaj szczegóły"/><br />
+        <select name="" id=""></select><br />
+        <UpdateButton value="test" data="test">Zamów Usługę</UpdateButton>
     </div>
   ) : (
     "No cars found"

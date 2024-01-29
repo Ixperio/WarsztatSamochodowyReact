@@ -102,6 +102,14 @@ interface AddNewCar{
   trustString?: string;
 }
 
+interface AddWork{
+  samochodId: number;
+  rodzajUslugiId: number;
+  dataPrzekazaniaPojazdu: Date;
+  opisZdarzenia: string;
+  trustString?: string;
+}
+
 
 let isLogged : boolean = false;
 
@@ -668,6 +676,39 @@ const apiService = {
           body: JSON.stringify(data),
         });
         console.log("Doszwedłem")
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
+    }
+    
+  },
+  addWork: async (values: AddWork): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : AddWork = {
+          samochodId: values.samochodId,
+          rodzajUslugiId: values.rodzajUslugiId,
+          dataPrzekazaniaPojazdu: values.dataPrzekazaniaPojazdu,
+          opisZdarzenia: values.opisZdarzenia,
+          trustString: cookie
+        }
+        console.log(data)
+    
+        const response = await fetch(baseUrl + '/Car/AddWork', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
         if(!response.ok){
           return false;
         }else{
