@@ -655,16 +655,28 @@ const apiService = {
 
     if(cookie !== undefined){
 
-        const data : AddNewCar = {
-          vin: values.vin,
-          nazwa:values.nazwa,
-          modelSamochoduId: values.modelSamochoduId,
-          rokProdukcji: values.rokProdukcji,
-          pojemnoscSkokowa: values.pojemnoscSkokowa,
-          rodzajPaliwaId: values.rodzajPaliwaId,
-          przebieg: values.przebieg,
-          nr_rejestracyjny: values.nr_rejestracyjny,
-          trustString: cookie
+        interface AddNewCar2{
+            vin: string;
+            nazwa: string;
+            modelSamochoduId: number;
+            rokProdukcji: number;
+            pojemnoscSkokowa: number;
+            rodzajPaliwaId: number;
+            przebieg: number;
+            nr_rejestracyjny: string;
+            trustString: string;
+        }
+
+        const data : AddNewCar2 = {
+          vin: values.vin.toString(),
+          nazwa: values.nazwa.toString(),
+          modelSamochoduId: values.modelSamochoduId.valueOf(),
+          rokProdukcji: values.rokProdukcji.valueOf(),
+          pojemnoscSkokowa: values.pojemnoscSkokowa.valueOf(),
+          rodzajPaliwaId: values.rodzajPaliwaId.valueOf(),
+          przebieg: values.przebieg.valueOf(),
+          nr_rejestracyjny: values.nr_rejestracyjny.toString(),
+          trustString: cookie.toString()
         }
         console.log(data)
     
