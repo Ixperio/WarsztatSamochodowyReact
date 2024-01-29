@@ -10,8 +10,7 @@ const DeleteUser = () =>{
     const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
       setPassword(event.target.value);
     };
-
-
+    
     return(
         <div className="user_delete">
              <DisplayData value={""}>Podaj Hasło:</DisplayData>
