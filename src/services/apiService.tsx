@@ -82,24 +82,24 @@ let isLogged : boolean = false;
 
 const apiService = {
     //TEST API - SAMOCHODY
-  getTestCar: async (): Promise<TestCar> => {
+  getTestCar: async (): Promise<TestCar | null> => {
     const response = await fetch(baseUrl + '/Car/Test');
    
     if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Coś poszło nie tak!');
+        
+        return null;
+        
       }
     
       const data: TestCar = await response.json();
       return data;
   },
   //TEST API - UŻYTKOWNICY
-  getTestPerson: async (): Promise<string> => {
+  getTestPerson: async (): Promise<string | null> => {
     const response = await fetch(baseUrl + '/Persons/Test');
    
     if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Coś poszło nie tak!');
+        return null;
       }
     
       const data = await response.json();
@@ -110,8 +110,7 @@ const apiService = {
     const response = await fetch(baseUrl + '/Car/GetFuelTypes');
    
     if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Coś poszło nie tak!');
+      return await response.json();
       }
     
       const data = await response.json();
@@ -160,45 +159,50 @@ const apiService = {
     
   },
   //SPRAWDZANIE CZY UŻYTKOWNIK JEST ZALOGOWANY
-  isUserLogged: async (): Promise<boolean> => {
-
-    if(Cookies.get("trustString") == undefined){
-      console.log("NIEZALOGOWANY")
-      Cookies.remove("trustString");
-      isLogged = false;
-      return false;
-    }else{
-      const trustString: string | undefined = Cookies.get("trustString")
-      if(trustString !== undefined){
-      }
-      
-      type DataType = {
-        truststring: string | undefined
-    }
-
-    const data: DataType = {
-        truststring: trustString
-    };
-
-    const response = await fetch(baseUrl + '/Persons/GetUserType', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
+  isUserLogged: async (): Promise<boolean | null> => {
+    if (Cookies.get("trustString") == undefined) {
+        console.log("NIEZALOGOWANY");
+        Cookies.remove("trustString");
         isLogged = false;
         return false;
-      }else{
-        isLogged = true;
-        return true;
-      }
-    
-    }
+    } else {
+        const trustString: string | undefined = Cookies.get("trustString");
 
-  },
+        if (trustString === undefined) {
+            // Obsługa przypadku braku trustString
+            return null;
+        }
+
+        type DataType = {
+            truststring: string | undefined;
+        };
+
+        const data: DataType = {
+            truststring: trustString,
+        };
+
+        const response = await fetch(baseUrl + '/Persons/GetUserType', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.status == 404) {
+            // Obsługa przypadku, gdy odpowiedź stwierdza , że jest niezalogowany
+            isLogged = false;
+            return false;
+        } else if(response.status == 200) {
+            isLogged = true;
+            return true;
+        }else{
+          
+          isLogged = false;
+          return null;
+        }
+    }
+},
 
   getUserData: async (): Promise<UserData | undefined> => {
     

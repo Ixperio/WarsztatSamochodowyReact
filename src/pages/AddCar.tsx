@@ -9,7 +9,6 @@ interface FuelCarTypes{
     name: string
 }
 
-console.log(await apiService.getFuelTypes())
 const AddCar = () => { 
     // State variables
     const [inputValue, setInputValue] = useState<string>("");

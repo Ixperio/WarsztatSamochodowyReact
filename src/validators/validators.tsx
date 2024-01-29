@@ -310,6 +310,43 @@ const validators = {
         return returnInfo;
 
       },
+
+      validateDate: (value: string | undefined, fieldName: string): Validator => {
+        // KONFIGURACJA
+        const nazwaPola: string = fieldName;
+        const formatDanychInfo: string = "Wartość powinna być w formacie daty";
+      
+        // Zmienne wbudowane w metodę
+        let thisMessage: string | null = null;
+        let isStateValid: boolean = false;
+      
+        // Sprawdzanie warunków
+        if (value !== undefined) {
+          const regex: RegExp = /^\d{4}-\d{2}-\d{2}$/;
+      
+          if (!regex.test(value)) {
+            thisMessage =
+              "Nieprawidłowy format wprowadzonych danych do pola " +
+              nazwaPola +
+              " - " +
+              formatDanychInfo;
+          } else {
+            thisMessage = null;
+            isStateValid = true;
+          }
+        } else {
+          thisMessage = "Wartość pola " + nazwaPola + " nie może być pusta!";
+          isStateValid = false;
+        }
+      
+        const returnInfo: Validator = {
+          isValid: isStateValid,
+          message: thisMessage,
+        };
+      
+        return returnInfo;
+      },
+      
       validatePasswordConfirm: (value1: string | undefined,value2: string | undefined, fieldName1: string, fieldName2: string): Validator => {
         
         let thisMessage : string | null = null;
