@@ -77,6 +77,31 @@ interface MyCar{
   nr_rejestracyjny: string;
 }
 
+interface CarModelInput{
+  wersjaNadwozia: string;
+  marka: string;
+  trustString: string
+}
+
+interface CarModelOutput{
+  id: number;
+  name: string;
+  wersjaNadwozia: WersjaMarkaPaliwo;
+  marka: WersjaMarkaPaliwo;
+}
+
+interface AddNewCar{
+  vin: string;
+  nazwa: string;
+  modelSamochoduId: number;
+  rokProdukcji: number;
+  pojemnoscSkokowa: number;
+  rodzajPaliwaId: number;
+  przebieg: number;
+  nr_rejestracyjny: string;
+  trustString?: string;
+}
+
 
 let isLogged : boolean = false;
 
@@ -523,6 +548,37 @@ const apiService = {
     
   },
   //Lista dostępnych typów pojazdów
+  getCarModels: async (nadwozie: string, marka: string): Promise<CarModelOutput | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : CarModelInput = {
+          trustString: cookie,
+          wersjaNadwozia: nadwozie,
+          marka: marka
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetCarModels', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  },
   getCarModelTypes: async (): Promise<FuelCarTypes | undefined> => {
 
     const cookie : string | undefined = Cookies.get("trustString");
@@ -552,7 +608,7 @@ const apiService = {
     }
     
   },
-  getCarModel: async (): Promise<FuelCarTypes | undefined> => {
+  getCarBrand: async (): Promise<FuelCarTypes | undefined> => {
 
     const cookie : string | undefined = Cookies.get("trustString");
 
@@ -562,7 +618,7 @@ const apiService = {
           trustString: cookie
         }
     
-        const response = await fetch(baseUrl + '/Car/GetCarModels', {
+        const response = await fetch(baseUrl + '/Car/GetBrands', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -578,6 +634,44 @@ const apiService = {
 
     }else{
         return undefined;
+    }
+    
+  },
+  addCar: async (values: AddNewCar): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : AddNewCar = {
+          vin: values.vin,
+          nazwa:values.nazwa,
+          modelSamochoduId: values.modelSamochoduId,
+          rokProdukcji: values.rokProdukcji,
+          pojemnoscSkokowa: values.pojemnoscSkokowa,
+          rodzajPaliwaId: values.rodzajPaliwaId,
+          przebieg: values.przebieg,
+          nr_rejestracyjny: values.nr_rejestracyjny,
+          trustString: cookie
+        }
+        console.log(data)
+    
+        const response = await fetch(baseUrl + '/Car/AddCar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        console.log("Doszwedłem")
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
     }
     
   }
