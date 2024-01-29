@@ -1,11 +1,24 @@
 import apiService from "../../services/apiService";
 
+interface AddNewCar{
+    vin: string;
+    nazwa: string;
+    modelSamochoduId: number;
+    rokProdukcji: number;
+    pojemnoscSkokowa: number;
+    rodzajPaliwaId: number;
+    przebieg: number;
+    nr_rejestracyjny: string;
+    trustString?: string;
+}
+
 interface ButtonProps{
     // children: React.ReactNode;
     value: string;
     children: string;
     data: string | undefined;
     style?: React.CSSProperties | string;
+    long_data?: AddNewCar | undefined;
 }
 
 const deleteusek = async (data: string) =>{
@@ -47,41 +60,52 @@ const Button: React.FC<ButtonProps> = (props) =>{
         case "UpdatePost":
             x = 6
             break;
+        case "AddCar":
+            x = 10
+            break;
         default:
             console.error("Value not declared")
             break;
     }
     const handleClick = () => {
         if(props.data !== undefined){
-            switch (x) {
-                case 1:
-                    apiService.updateName(props.data)
-                    break;
-                case 2:
-                    apiService.updateSurname(props.data)
-                    break;
-                case 3:
-                    apiService.updatePhone(props.data)
-                    break;
-                case 4:
-                    apiService.updateAddress(props.data)
-                    break;
-                case 5:
-                    apiService.updateCity(props.data)
-                    break;
-                case 6:
-                    apiService.updatePost(props.data)
-                    break;
-                case 0:
-                    deleteusek(props.data)
-                    break;
-                default:
-                    console.error("Updating index wrong!")
-                    break;
+            if (props.long_data !== undefined) {
+                switch (x) {
+                    case 1:
+                        apiService.updateName(props.data)
+                        break;
+                    case 2:
+                        apiService.updateSurname(props.data)
+                        break;
+                    case 3:
+                        apiService.updatePhone(props.data)
+                        break;
+                    case 4:
+                        apiService.updateAddress(props.data)
+                        break;
+                    case 5:
+                        apiService.updateCity(props.data)
+                        break;
+                    case 6:
+                        apiService.updatePost(props.data)
+                        break;
+                    case 10:
+                        apiService.addCar(props.long_data)
+                        break;
+                    case 0:
+                        deleteusek(props.data)
+                        break;
+                    default:
+                        console.error("Updating index wrong!")
+                        break;
+                }
+                console.log("Update")
+            }else{
+                console.log("Wartość nie może być pusta!")
             }
-            console.log("Update")
+        }else{
+            console.log("Wartość nie może być pusta!")
         }
-        console.log("Wartość nie może być pusta!")
     };
     return(
         <button type="button"  className="update_button" onClick={handleClick} style={buttonStyle}>{props.children}</button>

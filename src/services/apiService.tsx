@@ -77,29 +77,54 @@ interface MyCar{
   nr_rejestracyjny: string;
 }
 
+interface CarModelInput{
+  wersjaNadwozia: string;
+  marka: string;
+  trustString: string
+}
+
+interface CarModelOutput{
+  id: number;
+  name: string;
+  wersjaNadwozia: WersjaMarkaPaliwo;
+  marka: WersjaMarkaPaliwo;
+}
+
+interface AddNewCar{
+  vin: string;
+  nazwa: string;
+  modelSamochoduId: number;
+  rokProdukcji: number;
+  pojemnoscSkokowa: number;
+  rodzajPaliwaId: number;
+  przebieg: number;
+  nr_rejestracyjny: string;
+  trustString?: string;
+}
+
 
 let isLogged : boolean = false;
 
 const apiService = {
     //TEST API - SAMOCHODY
-  getTestCar: async (): Promise<TestCar> => {
+  getTestCar: async (): Promise<TestCar | null> => {
     const response = await fetch(baseUrl + '/Car/Test');
    
     if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Coś poszło nie tak!');
+        
+        return null;
+        
       }
     
       const data: TestCar = await response.json();
       return data;
   },
   //TEST API - UŻYTKOWNICY
-  getTestPerson: async (): Promise<string> => {
+  getTestPerson: async (): Promise<string | null> => {
     const response = await fetch(baseUrl + '/Persons/Test');
    
     if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Coś poszło nie tak!');
+        return null;
       }
     
       const data = await response.json();
@@ -110,8 +135,7 @@ const apiService = {
     const response = await fetch(baseUrl + '/Car/GetFuelTypes');
    
     if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || 'Coś poszło nie tak!');
+      return await response.json();
       }
     
       const data = await response.json();
@@ -160,45 +184,50 @@ const apiService = {
     
   },
   //SPRAWDZANIE CZY UŻYTKOWNIK JEST ZALOGOWANY
-  isUserLogged: async (): Promise<boolean> => {
-
-    if(Cookies.get("trustString") == undefined){
-      console.log("NIEZALOGOWANY")
-      Cookies.remove("trustString");
-      isLogged = false;
-      return false;
-    }else{
-      const trustString: string | undefined = Cookies.get("trustString")
-      if(trustString !== undefined){
-      }
-      
-      type DataType = {
-        truststring: string | undefined
-    }
-
-    const data: DataType = {
-        truststring: trustString
-    };
-
-    const response = await fetch(baseUrl + '/Persons/GetUserType', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    });
-
-    if (!response.ok) {
+  isUserLogged: async (): Promise<boolean | null> => {
+    if (Cookies.get("trustString") == undefined) {
+        console.log("NIEZALOGOWANY");
+        Cookies.remove("trustString");
         isLogged = false;
         return false;
-      }else{
-        isLogged = true;
-        return true;
-      }
-    
-    }
+    } else {
+        const trustString: string | undefined = Cookies.get("trustString");
 
-  },
+        if (trustString === undefined) {
+            // Obsługa przypadku braku trustString
+            return null;
+        }
+
+        type DataType = {
+            truststring: string | undefined;
+        };
+
+        const data: DataType = {
+            truststring: trustString,
+        };
+
+        const response = await fetch(baseUrl + '/Persons/GetUserType', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+
+        if (response.status == 404) {
+            // Obsługa przypadku, gdy odpowiedź stwierdza , że jest niezalogowany
+            isLogged = false;
+            return false;
+        } else if(response.status == 200) {
+            isLogged = true;
+            return true;
+        }else{
+          
+          isLogged = false;
+          return null;
+        }
+    }
+},
 
   getUserData: async (): Promise<UserData | undefined> => {
     
@@ -523,6 +552,37 @@ const apiService = {
     
   },
   //Lista dostępnych typów pojazdów
+  getCarModels: async (nadwozie: string, marka: string): Promise<CarModelOutput | undefined> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : CarModelInput = {
+          trustString: cookie,
+          wersjaNadwozia: nadwozie,
+          marka: marka
+        }
+    
+        const response = await fetch(baseUrl + '/Car/GetCarModels', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if(!response.ok){
+          return undefined;
+        }else{
+          return await response.json();
+        }
+
+    }else{
+        return undefined;
+    }
+    
+  },
   getCarModelTypes: async (): Promise<FuelCarTypes | undefined> => {
 
     const cookie : string | undefined = Cookies.get("trustString");
@@ -552,7 +612,7 @@ const apiService = {
     }
     
   },
-  getCarModel: async (): Promise<FuelCarTypes | undefined> => {
+  getCarBrand: async (): Promise<FuelCarTypes | undefined> => {
 
     const cookie : string | undefined = Cookies.get("trustString");
 
@@ -562,7 +622,7 @@ const apiService = {
           trustString: cookie
         }
     
-        const response = await fetch(baseUrl + '/Car/GetCarModels', {
+        const response = await fetch(baseUrl + '/Car/GetBrands', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -578,6 +638,44 @@ const apiService = {
 
     }else{
         return undefined;
+    }
+    
+  },
+  addCar: async (values: AddNewCar): Promise<boolean> => {
+
+    const cookie : string | undefined = Cookies.get("trustString");
+
+    if(cookie !== undefined){
+
+        const data : AddNewCar = {
+          vin: values.vin,
+          nazwa:values.nazwa,
+          modelSamochoduId: values.modelSamochoduId,
+          rokProdukcji: values.rokProdukcji,
+          pojemnoscSkokowa: values.pojemnoscSkokowa,
+          rodzajPaliwaId: values.rodzajPaliwaId,
+          przebieg: values.przebieg,
+          nr_rejestracyjny: values.nr_rejestracyjny,
+          trustString: cookie
+        }
+        console.log(data)
+    
+        const response = await fetch(baseUrl + '/Car/AddCar', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+        console.log("Doszwedłem")
+        if(!response.ok){
+          return false;
+        }else{
+          return true;
+        }
+
+    }else{
+        return false;
     }
     
   }
