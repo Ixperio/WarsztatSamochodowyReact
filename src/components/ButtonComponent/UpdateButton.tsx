@@ -12,6 +12,14 @@ interface AddNewCar{
     trustString?: string;
 }
 
+interface AddWork{
+    samochodId: number;
+    rodzajUslugiId: number;
+    dataPrzekazaniaPojazdu: Date;
+    opisZdarzenia: string;
+    trustString?: string;
+}  
+
 interface ButtonProps{
     // children: React.ReactNode;
     value: string;
@@ -19,7 +27,10 @@ interface ButtonProps{
     data: string | undefined;
     style?: React.CSSProperties | string;
     long_data?: AddNewCar | undefined;
+    long_data2?: undefined | AddWork;
 }
+
+
 
 const deleteusek = async (data: string) =>{
     if(await apiService.delete(data)){
@@ -60,6 +71,9 @@ const Button: React.FC<ButtonProps> = (props) =>{
         case "UpdatePost":
             x = 6
             break;
+        case "AddWork":
+            x = 7
+            break;
         case "AddCar":
             x = 10
             break;
@@ -69,7 +83,6 @@ const Button: React.FC<ButtonProps> = (props) =>{
     }
     const handleClick = () => {
         if(props.data !== undefined){
-            if (props.long_data !== undefined) {
                 switch (x) {
                     case 1:
                         apiService.updateName(props.data)
@@ -89,8 +102,16 @@ const Button: React.FC<ButtonProps> = (props) =>{
                     case 6:
                         apiService.updatePost(props.data)
                         break;
+                    case 7:
+                        if (props.long_data2 !== undefined) {
+                            console.log(props.long_data2)
+                            apiService.addWork(props.long_data2)
+                        }    
+                        break;
                     case 10:
-                        apiService.addCar(props.long_data)
+                        if (props.long_data !== undefined) {
+                            apiService.addCar(props.long_data)
+                        }
                         break;
                     case 0:
                         deleteusek(props.data)
@@ -100,9 +121,6 @@ const Button: React.FC<ButtonProps> = (props) =>{
                         break;
                 }
                 console.log("Update")
-            }else{
-                console.log("Wartość nie może być pusta!")
-            }
         }else{
             console.log("Wartość nie może być pusta!")
         }

@@ -700,9 +700,9 @@ const apiService = {
           opisZdarzenia: values.opisZdarzenia,
           trustString: cookie
         }
-        console.log(data)
+        // console.log(data)
     
-        const response = await fetch(baseUrl + '/Car/AddWork', {
+        const response = await fetch(baseUrl + '/Work/AddWork', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

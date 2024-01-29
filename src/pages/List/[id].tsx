@@ -13,7 +13,15 @@ interface ModelSamochodu{
     wersjaNadwozia: WersjaMarkaPaliwo;
     marka: WersjaMarkaPaliwo;
 }
-  
+
+interface AddWork{
+    samochodId: number;
+    rodzajUslugiId: number;
+    dataPrzekazaniaPojazdu: Date;
+    opisZdarzenia: string;
+    trustString?: string;
+}  
+
 interface MyCar{
     id: number;
     vin: string;
@@ -30,6 +38,14 @@ const CarDetails = () => {
     const { id } = useParams();
     const [cars, setCars] = useState<MyCar[] | undefined>(undefined);
     const [currentId, setCurrentId] = useState<number>(0);
+
+    const [addWorkData, setAddWorkData] = useState<AddWork>({
+        samochodId: 1,
+        rodzajUslugiId: 0,
+        dataPrzekazaniaPojazdu: new Date(),
+        opisZdarzenia: "",
+        trustString: undefined,
+      });
   
     useEffect(() => {
       const fetchData = async () => {
@@ -51,9 +67,27 @@ const CarDetails = () => {
   
       fetchData();
     }, [id]); // Run whenever the 'id' parameter changes
-    console.log(currentId)
-    console.log(typeof(currentId))
-  
+
+    const handleDetailsInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAddWorkData((prevData) => ({
+          ...prevData,
+          opisZdarzenia: e.target.value,
+        }));
+      };
+    
+      const handleDateInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAddWorkData((prevData) => ({
+          ...prevData,
+          dataPrzekazaniaPojazdu: new Date(e.target.value),
+        }));
+      };
+    
+      const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setAddWorkData((prevData) => ({
+          ...prevData,
+          rodzajUslugiId: parseInt(e.target.value),
+        }));
+      };
     return (
       <div>
         <div className="list_title">Szczegóły pojazdu:</div>
@@ -71,9 +105,36 @@ const CarDetails = () => {
             <DisplayData value={cars.find(car => car.id === currentId)?.pojemnoscSkokowa || "No cars found"}>Pojemność skokowa:</DisplayData>
             <DisplayData value={cars.find(car => car.id === currentId)?.rokProdukcji || "No cars found"}>Rok produkcji</DisplayData>
         </div>
-        <input type="text" placeholder="Podaj szczegóły"/><br />
-        <select name="" id=""></select><br />
-        <UpdateButton value="test" data="test">Zamów Usługę</UpdateButton>
+        <input
+        type="text"
+        placeholder="Podaj szczegóły"
+        value={addWorkData.opisZdarzenia}
+        onChange={handleDetailsInputChange}
+      />
+      <br />
+      <input
+        type="date"
+        name="date"
+        value={addWorkData.dataPrzekazaniaPojazdu.toISOString().split("T")[0]}
+        onChange={handleDateInputChange}
+      />
+      <select
+        name="workName"
+        className="xd"
+        value={addWorkData.rodzajUslugiId.toString()}
+        onChange={handleSelectChange}
+      >
+        <option value="2">Naprawa</option>
+        <option value="3">Lakierowanie</option>
+      </select>
+      <br />
+      <UpdateButton
+        value="AddWork"
+        long_data2 = {addWorkData}
+        data="bruh"
+      >
+        Zamów Usługę
+      </UpdateButton>
     </div>
   ) : (
     "No cars found"
