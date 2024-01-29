@@ -15,7 +15,7 @@ const Login = () => {
   const navigator = useNavigate();
   const { registerLink } = useGlobalLinks();
 
-  const [generalError, setGeneralError] = useState(false);
+    const [generalError, setGeneralError] = useState(false);
     const [passError, setPassError] = useState(false);
 
     let passErrorMessage : string | null = null;
@@ -46,7 +46,7 @@ const Login = () => {
         }
 
         const formData = new FormData(form);
-
+        //sprawdzanie walidaci przy każdej zmianie formularza
         formData.forEach((value, name) => {
             const stringValue = value.toString();
             let validation: Validator;
@@ -69,7 +69,7 @@ const Login = () => {
 
   const makeTest = async () => {
     try {
-      const response: string = await apiService.getTestPerson();
+      const response: string | null = await apiService.getTestPerson();
 
       if (response === 'Success') {
         console.log('API Działa');

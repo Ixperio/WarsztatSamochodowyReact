@@ -33,7 +33,6 @@ interface AddNewCar{
 }
 
 
-console.log(await apiService.getCarModelTypes())
 const AddCar = () => {
     const [carModelsTypes, setCarModelsTypes] = useState<FuelCarTypes[]>([]);
     const [selectedCarModelTypes, setSelectedCarModelTypes] = useState<string>("");

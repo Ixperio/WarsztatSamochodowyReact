@@ -65,20 +65,27 @@
     padding: 10px;
     justify-items: center;
 }
+.option{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 100%;
+    justify-items: left;
+    align-items: center;
+}
 .register > form > div{
     padding-top: 0;
 }
-.register > form > div > label{
+.register > form > div > .option > label{
     width: 90%;
     text-align: left;
     padding-bottom: 5px;
-    padding-top: 20px;
+    padding-top: 10px;
     padding-left: 5px;
 }
-.register > form > div > label:first-of-type{
+.register > form > div > .option:first-of-type >label{
     padding-top: 0px;
 }
-.register > form > div > input{
+.register > form > div > .option > input{
     width: 90%;
     text-indent: 5px;
     height: 25px;
@@ -90,7 +97,7 @@
 }
 .register > form > button[type="submit"]{
     grid-area: d;
-    padding: 10px 30px 10px 30px;
+    padding: 15px 35px 15px 35px;
     border-radius: 5px;
     outline: none;
     border: none;
@@ -106,7 +113,7 @@
     margin-bottom: 10px;
 }
 .register > form > button[type="submit"]:hover{
-    padding: 10px 30px 10px 30px;
+    padding: 15px 35px 15px 35px;
     margin-top: 9px;
     margin-bottom: 11px;
     border-radius: 5px;
