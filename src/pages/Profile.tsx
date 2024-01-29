@@ -85,7 +85,7 @@ const Profile = () => {
           <DisplayData value={userData.birthday}>Data urodzin:</DisplayData>
         </div>
         <Button link={"/User/Edit"}>Edytuj</Button><br />
-        <Button style="red" link={"/User/DeleteUser"}>Usuń Konto</Button>
+        <Button style="red" link={"/User/Delete"}>Usuń Konto</Button>
       </div>
     );
   };
