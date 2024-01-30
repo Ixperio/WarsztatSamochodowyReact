@@ -1,0 +1,30 @@
+nav>div>.navItemStyle, p{
+    width: max-content;
+    font-size: 20px;
+    margin-left: auto;
+    padding-top: none;
+    margin-right: auto;
+    flex: 1;
+    font-family: Inter;
+    cursor: pointer;
+    user-select: none;
+    height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+}
+nav>div>.navItemStyle:hover,p:hover{
+    color: rgb(43, 103, 233)
+}
+
+.fat{
+    flex: 2;
+}
+
+p{
+    height: 100%;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    width: max-content;
+}

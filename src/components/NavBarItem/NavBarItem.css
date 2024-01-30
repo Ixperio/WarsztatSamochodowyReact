@@ -1,0 +1,12 @@
+.navItemStyle{
+    width: 100%;
+    height: max-content;
+    display: block;
+    background-color: gray;
+    border: none;
+    cursor:pointer;
+    font-size: 20px;
+    color: black;
+    font-family: Inter;
+    font-weight: bold;
+}

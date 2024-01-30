@@ -1,0 +1,98 @@
+body{
+  padding: 0;
+  margin: 0;
+  text-align: center;
+  background-color: lightgray;
+  font-family: Inter;
+}
+
+.navbar{
+  display: flex;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  margin-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 1px 3px 0px;
+  background-color: gray;
+  font-weight: bold;
+}
+
+.author{
+  font-weight: bold;
+  display: inline;
+}
+
+.list_title{
+  font-weight: bold;
+  font-size: x-large;
+  font-family: Inter;
+  margin-bottom: 15px;
+}
+
+.registered_cars{
+  width: 100%;
+  table-layout: fixed;
+}
+
+.user_data{
+  /* text-align: center; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-bottom: 35px;
+}
+
+.display_data_name{
+  /* background-color: beige; */
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  text-align: center;
+  font-family: Inter;
+}
+
+.display_data_value{
+  margin-left: auto;
+  margin-right: auto;
+  width: max-content;
+  text-align: center;
+  font-family: Inter;
+}
+
+.update_input{
+ margin-left: auto;
+ margin-right: auto;
+}
+
+.update_button{
+  margin-top: 10px;
+  margin-bottom: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button{
+  color: white;
+  background-color: black;
+  width: max-content;
+  height: max-content;
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.list_value{
+  cursor: pointer;
+}
+
+.list_item:hover{
+  color: blue;
+}
+
+.xd{
+  margin-top: 10px;
+}
+
+.details{
+  margin-left: 300px;
+  margin-right: 300px;
+}
