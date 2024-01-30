@@ -56,8 +56,8 @@ const Profile = () => {
   
     // Render the component JSX using the user data
     return (
-      <div>
-        <div className="user_data">
+      <div style={{display: "grid", gridTemplateColumns: "100%", paddingLeft: "20px"}}>
+        <div className="user_data" style={{gridTemplateColumns: "100%", width: "100%", textAlign: "left", justifyItems: "left"}}>
           <DisplayData value={userData.name}>Imię:</DisplayData>
           <DisplayData value={userData.surname}>Nazwisko:</DisplayData>
           <DisplayData value={userData.email}>Email:</DisplayData>

@@ -21,7 +21,7 @@ const Button: React.FC<ButtonProps> = (props) =>{
     } // Assuming the string is a color value
       : props.style;
     return(
-        <button type="button" onClick={handleClick} style={buttonStyle}>{props.children}</button>
+        <button type="button" onClick={handleClick} style={buttonStyle} >{props.children}</button>
     )
 }
 

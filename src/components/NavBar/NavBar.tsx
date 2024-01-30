@@ -29,7 +29,7 @@ const NavBar = () => {
       <div className='navbar'>
         <p className='fat'></p>
         <p><NavBarItem link="/home">Home Page</NavBarItem></p>
-        <p><NavBarItem link="/details">Details</NavBarItem></p>
+        <p><NavBarItem link="/details">O nas</NavBarItem></p>
         {isLogged ? (
           <p><NavBarItem link="User/Profile">User Profile</NavBarItem></p>
         ) : (

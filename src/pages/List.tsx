@@ -40,8 +40,8 @@ const List: React.FC = () => {
     }, []); // Run once on component mount
   
     return (
-      <div>
-        <div className="list_title">Lista zarejestrowanych w bazie pojazdów:</div>
+      <div style={{width: "100%", padding: "20px", display: "grid", justifyItems: "left", gridTemplateRows: "min-content min-content min-content" }}>
+        <div className="list_title" style={{width: "100%", padding: "20px", textAlign: "left" }}>Lista zarejestrowanych w bazie pojazdów:</div>
         <div className="list_items">
           {cars ? (
             <table className="registered_cars">
@@ -57,7 +57,7 @@ const List: React.FC = () => {
               </tbody>
             </table>
           ) : (
-            <p>Loading...</p>
+            <p style={{width: "100%", padding: "20px", textAlign: "left" }}>Loading...</p>
           )}
           <Button link="/AddCar">Add Car</Button>
         </div>

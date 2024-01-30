@@ -7,32 +7,34 @@ const Details = () => {
     return(
         <div className="details">
             <img src="https://eresgarage.pl/wp-content/uploads/2022/09/jak-wybrac-warsztat.jpg" alt="Wnętrze warsztatu samochodowego"/>
-            <h1>Historia Warsztatu:</h1>
-Nasz warsztat samochodowy został założony w [rok założenia] z pasji do motoryzacji i zaangażowania w świadczenie usług najwyższej jakości dla naszych klientów.
+            <div className="detailsTEXT">
+            <h4>Historia Warsztatu:</h4>
+Nasz warsztat samochodowy zaczynał swoją działalność w [rok założenia], ponieważ kochamy samochody i chcemy pomagać ludziom w dbaniu o nie.
+<h4>Doświadczenie i Fachowość:</h4>
+W naszym zespole pracują super doświadczeni mechanicy, którzy znają się na naprawach samochodów. Ciągle się uczą i używają najnowocześniejszych narzędzi, żeby wszystko było zrobione dokładnie.
 
-<h1>Doświadczenie i Fachowość:</h1>
-Zespół naszych doświadczonych mechaników posiada bogate doświadczenie w obszarze napraw samochodowych. Dzięki regularnym szkoleniom i posiadaniu najnowszego sprzętu, gwarantujemy profesjonalizm i precyzję w każdym detalu.
+<h4>Obszar Usług:</h4>
+Robimy wiele różnych rzeczy dla samochodów - sprawdzamy, co jest źle, naprawiamy silniki, zmieniamy opony i patrzymy, czy wszystko działa jak trzeba.
 
-<h1>Obszar Usług:</h1>
-Specjalizujemy się w szerokim zakresie napraw i konserwacji pojazdów. Oferujemy kompleksowe usługi, w tym diagnostykę, naprawy mechaniczne, wymianę opon, oraz przeglądy techniczne.
+<h4>Nasze Wartości:</h4>
+Jesteśmy bardzo uczciwi i zawsze dbamy o to, żeby nasi klienci byli bezpieczni i zadowoleni. Nasze zasady to uczciwość, rzetelność i troska o samochody, jakby były nasze własne.
 
-<h1>Nasze Wartości:</h1>
-Jesteśmy oddani zapewnianiu bezpieczeństwa i satysfakcji naszych klientów. Nasze wartości obejmują rzetelność, uczciwość, oraz troskę o każdy pojazd tak, jakby należał do nas samych.
+<h4>Nowoczesne Wyposażenie:</h4>
+Mamy też super sprzęt, który pomaga nam znaleźć i naprawić problemy w samochodach. Zawsze inwestujemy w nowe rzeczy, żeby być na bieżąco z nowinkami w motoryzacji.
 
-<h1>Nowoczesne Wyposażenie:</h1>
-Nasz warsztat jest wyposażony w najnowocześniejszy sprzęt, co umożliwia nam skuteczne diagnozowanie i naprawianie wszelkiego rodzaju usterek. Stale inwestujemy w nowe technologie, aby sprostać rosnącym wymaganiom motoryzacyjnym.
+<h4>Ekologiczne Praktyki:</h4>
+Wiemy, że samochody wpływają na środowisko, więc dbamy o to, żeby nasz warsztat był przyjazny dla planety. Starannie utylizujemy odpady i używamy materiałów, które są dobre dla środowiska.
 
-<h1>Ekologiczne Praktyki:</h1>
-Jesteśmy świadomi wpływu motoryzacji na środowisko, dlatego stosujemy ekologiczne praktyki w naszym warsztacie. Dbamy o odpowiednie utylizowanie odpadów i promujemy używanie ekologicznych materiałów.
+<h4>Satysfakcja Klienta:</h4>
+Najważniejsze dla nas jest, żeby nasi klienci byli zadowoleni. Zawsze mówimy jasno, ile coś kosztuje, i staramy się, żeby ceny były uczciwe. Chcemy, żeby każdy czuł się bezpiecznie i pewnie korzystając z naszych usług.
 
-<h1>Satysfakcja Klienta:</h1>
-Zależy nam na pełnej satysfakcji klientów. Dlatego stawiamy na transparentność, jasną komunikację oraz konkurencyjne ceny. Naszym celem jest zapewnienie bezpiecznej i sprawnej jazdy każdemu naszemu klientowi.
+<h4>Zaufanie i Rekomendacje:</h4>
+Cieszymy się, że nasi klienci nam ufają i polecają nas innym. To dla nas najważniejsze. Zawsze staramy się budować dobre relacje z ludźmi, którzy do nas przychodzą.
 
-<h1>Zaufanie i Rekomendacje:</h1>
-Dumni jesteśmy z budowania trwałych relacji z naszymi klientami. Zaufanie, jakim nas obdarzają, jest dla nas najważniejsze. Cieszymy się również z licznych pozytywnych rekomendacji od naszych zadowolonych użytkowników.
-
-<h1>Społeczna Aktywność:</h1>
-Angażujemy się również w lokalną społeczność, uczestnicząc w różnych akcjach charytatywnych i wspierając inicjatywy społeczne. Chcemy być postrzegani nie tylko jako warsztat samochodowy, ale również jako aktywni członkowie społeczności.
+<h4>Społeczna Aktywność:</h4>
+Oprócz naprawiania samochodów, angażujemy się w lokalną społeczność. Pomagamy innym ludziom i wspieramy różne akcje charytatywne. Chcemy być nie tylko warsztatem samochodowym, ale też częścią społeczności.
+            </div>
+            
         </div>
 
     )
